@@ -1,0 +1,17 @@
+{
+    "name": "filippo-berio/flawless",
+    "description": "Flawless microframework",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Flawless\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.2",
+        "psr/container": "^2.0"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.3"
+    }
+}
