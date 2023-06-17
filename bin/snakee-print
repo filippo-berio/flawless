@@ -1,2 +1,16 @@
+#!/usr/bin/env php
 <?php
-dd(23);
+
+use Flawless\Console\FlawlessConsole;
+use Flawless\Snakee\Printer\SnakeePrinter;
+use Flawless\Snakee\Plugin\PrinterPlugin;
+
+$root = __DIR__ . '/../../../..';
+require_once "$root/vendor/autoload.php";
+
+$flawless = FlawlessConsole::boot();
+$flawless->enablePlugin(PrinterPlugin::class);
+
+/** @var SnakeePrinter $printer */
+$printer = $flawless->getContainer()->get(SnakeePrinter::class);
+$printer->print();

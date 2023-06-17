@@ -1,6 +1,6 @@
 <?php
 
-namespace Flawless\Kernel\Plugin\Base;
+namespace Flawless\Kernel\Plugin;
 
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;

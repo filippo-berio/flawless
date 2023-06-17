@@ -3,6 +3,7 @@
 namespace Flawless\Container;
 
 use Flawless\Container\Exception\ContainerException;
+use Flawless\Container\Parameter\ParameterInterface;
 use ReflectionClass;
 use ReflectionParameter;
 
@@ -42,6 +43,9 @@ class Container implements ContainerInterface
 
     public function register(string $id, $value)
     {
+        if ($value instanceof ParameterInterface) {
+            $value = $value->resolve();
+        }
         $this->parameters[$id] = $value;
     }
 
