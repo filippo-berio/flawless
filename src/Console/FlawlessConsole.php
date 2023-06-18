@@ -19,11 +19,15 @@ class FlawlessConsole extends FlawlessFacade
         parent::__construct($application);
     }
 
-    public static function boot(): self
+    public static function boot(string $rootDir = null): self
     {
         $container = new Container();
         $application = $container->get(Application::class);
 
+        if ($rootDir) {
+            $container->register('rootDir', $rootDir);
+        }
+        
         $self = new self($application);
         $self->container = $container;
 

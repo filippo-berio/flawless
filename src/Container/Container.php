@@ -6,6 +6,7 @@ use Flawless\Container\Exception\ContainerException;
 use Flawless\Container\Parameter\ParameterInterface;
 use ReflectionClass;
 use ReflectionParameter;
+use Psr\Container\ContainerInterface as PsrContainerInterface;
 
 class Container implements ContainerInterface
 {
@@ -16,6 +17,7 @@ class Container implements ContainerInterface
     {
         $this->register($this::class, $this);
         $this->bind(ContainerInterface::class, $this::class);
+        $this->bind(PsrContainerInterface::class, $this::class);
     }
 
     public function get(string $id)
@@ -44,7 +46,7 @@ class Container implements ContainerInterface
     public function register(string $id, $value)
     {
         if ($value instanceof ParameterInterface) {
-            $value = $value->resolve();
+            $value = $value->resolve($this);
         }
         $this->parameters[$id] = $value;
     }

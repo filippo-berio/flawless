@@ -15,11 +15,18 @@ class HttpApplication extends Application
     /** @var Endpoint[] */
     protected array $endpoints = [];
 
+    private Request $request;
     private array $globalMiddlewareClasses = [];
 
-    public function execute(Request $request)
+    public function withRequest(Request $request): self
     {
-        $response = $this->createResponse($request);
+        $this->request = $request;
+        return $this;
+    }
+    
+    public function execute()
+    {
+        $response = $this->createResponse($this->request);
         $this->sendResponse($response);
     }
 

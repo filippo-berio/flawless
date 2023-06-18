@@ -14,6 +14,13 @@ class SnakeePrinter
 
     public function print()
     {
-        dd($this->graphFinders, 'print');
+        $graphs = [];
+        foreach ($this->graphFinders as $finder) {
+            $graphs = [
+                ...$graphs,
+                ...$finder->findGraphs(),
+            ];
+        }
+        dump($graphs);
     }
 }

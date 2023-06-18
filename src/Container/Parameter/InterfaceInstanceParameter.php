@@ -2,7 +2,9 @@
 
 namespace Flawless\Container\Parameter;
 
-use Flawless\Http\Snakee\GraphFinder;
+use Psr\Container\ContainerInterface;
+
+use function WyriHaximus\listClassesInDirectories;
 
 class InterfaceInstanceParameter implements ParameterInterface
 {
@@ -11,18 +13,20 @@ class InterfaceInstanceParameter implements ParameterInterface
     ) {
     }
 
-    public function resolve()
+    public function resolve(ContainerInterface $container)
     {
+        $rootDir = $container->get('rootDir');
         $children = [];
-        foreach(get_declared_classes() as $class) {
-
-            dd(get_declared_classes());
-            dd(class_implements(GraphFinder::class));
+        $classes = listClassesInDirectories(
+            "$rootDir/vendor/filippo-berio",
+            "$rootDir/src"
+        );
+        foreach($classes as $class) {
             if (in_array($this->interface, class_implements($class))) {
-                dd($class);
-                $children[] = $class;
+                $children[] = $container->get($class);
             }
         }
-        dd($children);
+        
+        return $children;
     }
 }

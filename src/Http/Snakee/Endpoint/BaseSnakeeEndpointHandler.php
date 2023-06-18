@@ -6,9 +6,10 @@ use Flawless\Http\Endpoint\EndpointHandlerInterface;
 use Flawless\Http\Request\Request;
 use Flawless\Http\Response\ResponseInterface;
 use Flawless\Snakee\Context\ContextInterface;
+use Flawless\Snakee\GraphInterface;
 use Flawless\Snakee\Snakee;
 
-abstract class BaseSnakeeEndpointHandler implements EndpointHandlerInterface
+abstract class BaseSnakeeEndpointHandler implements EndpointHandlerInterface, GraphInterface
 {
     public function __construct(
         private Snakee $manager
@@ -25,8 +26,6 @@ abstract class BaseSnakeeEndpointHandler implements EndpointHandlerInterface
     }
 
     protected abstract function buildResponse(ContextInterface $context): ResponseInterface;
-
-    protected abstract function getGraph(): array;
 
     protected function getContext(): ?ContextInterface
     {

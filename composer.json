@@ -11,6 +11,7 @@
     "require": {
         "php": ">=8.2",
         "psr/container": "^2.0",
-        "wyrihaximus/list-classes-in-directory": "^1.6.0"
+        "wyrihaximus/list-classes-in-directory": "^1.6.0",
+        "symfony/finder": "^6.3.0"
     }
 }

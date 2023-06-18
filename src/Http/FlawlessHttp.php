@@ -14,7 +14,9 @@ use Flawless\Snakee\SnakeeConfiguratorInterface;
 
 class FlawlessHttp extends FlawlessFacade
 {
-    protected Request $request;
+    
+    /** @var BaseRequestMiddleware[] */
+    protected array $snakeeRequestMiddlewares;
 
     /** @var HttpApplication */
     protected ApplicationInterface $application;
@@ -25,16 +27,18 @@ class FlawlessHttp extends FlawlessFacade
         parent::__construct($application);
     }
 
-    public static function boot(): self
+    public static function boot(string $rootDir = null): self
     {
         $container = new Container();
         $application = $container->get(HttpApplication::class);
 
-        $request = Request::fromGlobals();
+        if ($rootDir) {
+            $container->register('rootDir', $rootDir);
+        }
 
+        
         $self = new self($application);
         $self->container = $container;
-        $self->request = $request;
 
         return $self;
     }
@@ -57,7 +61,7 @@ class FlawlessHttp extends FlawlessFacade
         foreach ($requestMiddlewares as $middlewareClass) {
             /** @var BaseRequestMiddleware $middleware */
             $middleware = $this->container->get($middlewareClass);
-            $middleware->setRequest($this->request);
+            $this->snakeeRequestMiddlewares[] = $middleware;
             $this->snakee->addContextMiddleware($middleware);
         }
 
@@ -73,7 +77,11 @@ class FlawlessHttp extends FlawlessFacade
 
     public function execute(): self
     {
-        $this->application->execute($this->request);
+        $request = Request::fromGlobals();
+        foreach ($this->snakeeRequestMiddlewares as $middleware) {
+            $middleware->setRequest($request);
+        }
+        $this->application->withRequest($request)->execute();
         return $this;
     }
 
