@@ -8,12 +8,10 @@ use Flawless\Snakee\Plugin\PrinterPlugin;
 $root = __DIR__ . '/../../../..';
 require_once "$root/vendor/autoload.php";
 
-$flawless = FlawlessConsole::boot($root);
-$flawless->enablePlugin(PrinterPlugin::class);
+$flawless = FlawlessConsole::boot($argv, $root);
 
+$flawless->enablePlugin(PrinterPlugin::class);
 /** @var SnakeePrinter $printer */
 $printer = $flawless->getContainer()->get(SnakeePrinter::class);
 
-#TODO норм работа с терминалом
 $filePath = $printer->print();
-dump('Created at ' . $filePath);

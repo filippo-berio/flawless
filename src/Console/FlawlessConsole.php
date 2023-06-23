@@ -13,13 +13,15 @@ class FlawlessConsole extends FlawlessFacade
     /** @var Application */
     protected ApplicationInterface $application;
 
+    private Input $input;
+
     public function __construct(
         ApplicationInterface $application
     ) {
         parent::__construct($application);
     }
 
-    public static function boot(string $rootDir = null): self
+    public static function boot(array $argv, string $rootDir = null): self
     {
         $container = new Container();
         $application = $container->get(Application::class);
@@ -30,6 +32,10 @@ class FlawlessConsole extends FlawlessFacade
         
         $self = new self($application);
         $self->container = $container;
+
+        // first arg is binary path
+        array_shift($argv);
+        $self->input = new Input($argv);
 
         return $self;
     }
