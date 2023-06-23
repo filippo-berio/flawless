@@ -3,7 +3,7 @@
 namespace Flawless\Http\Snakee;
 
 use Flawless\Http\Snakee\Endpoint\BaseSnakeeEndpointHandler;
-use Flawless\Kernel\Tool\FileFinder;
+use Flawless\Tools\FileFinder;
 use Flawless\Snakee\GraphInterface;
 use Flawless\Snakee\Printer\GraphFinderInterface;
 use Flawless\Snakee\Printer\PrintedGraph;

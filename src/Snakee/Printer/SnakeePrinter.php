@@ -9,6 +9,7 @@ class SnakeePrinter
      */
     public function __construct(
         private array $graphFinders,
+        private StaticPageCompiler $pageCompiler
     ) {
     }
 
@@ -21,6 +22,14 @@ class SnakeePrinter
                 ...$finder->findGraphs(),
             ];
         }
-        dump($graphs);
+
+        $filePath = $this->pageCompiler->compile($graphs);
+
+        dump($filePath);
+    }
+
+    private function compileDiagram(array $graphs)
+    {
+
     }
 }
