@@ -13,7 +13,7 @@ class SnakeePrinter
     ) {
     }
 
-    public function print()
+    public function print(): string
     {
         $graphs = [];
         foreach ($this->graphFinders as $finder) {
@@ -23,13 +23,6 @@ class SnakeePrinter
             ];
         }
 
-        $filePath = $this->pageCompiler->compile($graphs);
-
-        dump($filePath);
-    }
-
-    private function compileDiagram(array $graphs)
-    {
-
+        return $this->pageCompiler->compile($graphs);
     }
 }

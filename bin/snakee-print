@@ -13,4 +13,7 @@ $flawless->enablePlugin(PrinterPlugin::class);
 
 /** @var SnakeePrinter $printer */
 $printer = $flawless->getContainer()->get(SnakeePrinter::class);
-$printer->print();
+
+#TODO норм работа с терминалом
+$filePath = $printer->print();
+dump('Created at ' . $filePath);
