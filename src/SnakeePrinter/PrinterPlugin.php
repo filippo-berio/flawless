@@ -1,11 +1,11 @@
 <?php
 
-namespace Flawless\Snakee\Plugin;
+namespace Flawless\SnakeePrinter;
 
 use Flawless\Container\ContainerInterface;
 use Flawless\Container\Parameter\InterfaceInstanceParameter;
 use Flawless\Kernel\Plugin\PluginInterface;
-use Flawless\Snakee\Printer\GraphFinderInterface;
+use Flawless\SnakeePrinter\GraphFinderInterface;
 
 class PrinterPlugin implements PluginInterface
 {

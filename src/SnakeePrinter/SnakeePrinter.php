@@ -1,6 +1,6 @@
 <?php
 
-namespace Flawless\Snakee\Printer;
+namespace Flawless\SnakeePrinter;
 
 class SnakeePrinter
 {
@@ -9,7 +9,7 @@ class SnakeePrinter
      */
     public function __construct(
         private array $graphFinders,
-        private StaticPageCompiler $pageCompiler
+        private ApplicationCompiler $pageCompiler
     ) {
     }
 
