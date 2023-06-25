@@ -2,6 +2,8 @@
 
 namespace Flawless\SnakeePrinter;
 
+use Flawless\SnakeePrinter\GraphFinder\GraphFinderInterface;
+
 class SnakeePrinter
 {
     /**

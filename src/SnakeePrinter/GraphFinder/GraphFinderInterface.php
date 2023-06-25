@@ -1,6 +1,8 @@
 <?php
 
-namespace Flawless\SnakeePrinter;
+namespace Flawless\SnakeePrinter\GraphFinder;
+
+use Flawless\SnakeePrinter\Data\PrintedGraph;
 
 interface GraphFinderInterface
 {

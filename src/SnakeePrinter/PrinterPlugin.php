@@ -5,7 +5,7 @@ namespace Flawless\SnakeePrinter;
 use Flawless\Container\ContainerInterface;
 use Flawless\Container\Parameter\InterfaceInstanceParameter;
 use Flawless\Kernel\Plugin\PluginInterface;
-use Flawless\SnakeePrinter\GraphFinderInterface;
+use Flawless\SnakeePrinter\GraphFinder\GraphFinderInterface;
 
 class PrinterPlugin implements PluginInterface
 {

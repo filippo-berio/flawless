@@ -11,10 +11,24 @@ $graphs ??= [];
     <script src="application.ts" type="module"></script>
 </head>
 <body>
-<div data-controller="snakee">
-    <span data-snakee-target="name"></span>
-    <div data-snakee-target="graph"><?= count($graphs) ?></div>
+<script>
+</script>
+
+<div>
+    <div>You got <?= count($graphs) ?> graphs</div>
+    <?php foreach ($graphs as $i => $graph) { ?>
+<!--        <div data-controller="reveal graph"-->
+        <?= 'Graph ' . $i + 1 ?>
+        <hr>
+        <div data-controller="graph"
+             data-graph-graph-value="<?= htmlentities($graph) ?>"
+        >
+<!--            <button type="button" data-action="reveal#toggle">Graph --><?php //= $i + 1 ?><!--</button>-->
+<!--            <div hidden data-reveal>-->
+            <div data-graph-target="container"></div>
+            <hr>
+        </div>
+    <?php } ?>
 </div>
 </body>
 </html>
-
